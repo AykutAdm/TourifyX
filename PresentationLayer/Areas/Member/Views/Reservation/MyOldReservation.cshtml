@@ -1,0 +1,78 @@
+﻿@using EntityLayer.Concrete
+@model List<Reservation>
+@{
+    ViewData["Title"] = "MyOldReservation";
+    Layout = "~/Views/Shared/_MemberLayout.cshtml";
+}
+
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Geçmiş Rezervasyonlarım</h4>
+                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                        <li><a data-action="close"><i class="ft-x"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        @if (!Model.Any())
+                        {
+                            <!-- Uyarı Kartı (Soft UI style) -->
+                            <div class="d-flex justify-content-center mt-5">
+                                <div class="card shadow border-0 p-4 text-center" style="max-width: 520px; border-radius: 20px;">
+                                    <div class="card-body">
+                                        <i class="bi bi-calendar-x" style="font-size: 48px; color: #e63946;"></i>
+                                        <h4 class="fw-bold mt-3" style="color:#e63946;">Geçmiş rezervasyon bulunamadı</h4>
+
+                                        <p class="text-muted mt-2 mb-0">
+                                            Şu anda görüntüleyebileceğiniz Geçmiş bir rezervasyon kaydı bulunmuyor.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <table class="table">
+                                <thead>
+                                    <tr style="background:#2f4050; color:white;">
+                                        <th>#</th>
+                                        <th>Lokasyon</th>
+                                        <th>Kişi Sayısı</th>
+                                        <th>Rezervasyon Tarihi</th>
+                                        <th>Durum</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="table-light">
+                                            <td>@item.ReservationId</td>
+                                            <td>@item.Destination.City</td>
+                                            <td>@item.PersonCount</td>
+                                            <td>@item.ReservationDate.ToString("dd MMM yyyy")</td>
+                                            <td>
+                                                <span class="badge bg-primary">@item.Status</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

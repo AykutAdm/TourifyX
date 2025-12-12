@@ -1,0 +1,42 @@
+﻿@model AccountViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card shadow p-4" style="background-color:#f8f9fa; border-radius:12px;">
+    <h3 class="mb-4 text-dark">Unit Of Work Personel Prim Transferi</h3>
+
+    <form method="post">
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-user me-1'></i> Gönderen
+                </label>
+                <input type="text" asp-for="SenderId" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-user me-1'></i> Alıcı
+                </label>
+                <input type="text" asp-for="ReceiverId" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-dollar-circle me-1'></i> Miktar
+                </label>
+                <input type="text" asp-for="Amount" class="form-control" />
+            </div>
+
+        </div>
+
+        <button class="btn text-white mt-4 shadow-sm rounded"
+                style="background-color:darkslategrey;">
+            <i class='bx bx-plus-circle me-2'></i>Hesaba Aktar
+        </button>
+    </form>
+</div>

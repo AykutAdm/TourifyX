@@ -1,0 +1,75 @@
+@using EntityLayer.Concrete
+@model List<SentMail>
+@{
+    ViewData["Title"] = "Gönderilen Mail Listesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Gönderilen Mail Listesi</h1>
+<br />
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover" style="background-color:darkslategrey; color:white;">
+            <thead>
+                <tr>
+                    <th style="color:white;">#</th>
+                    <th style="color:white;">Alıcı</th>
+                    <th style="color:white;">Konu</th>
+                    <th style="color:white;">İçerik</th>
+                    <th style="color:white;">Gönderim Tarihi</th>
+                    <th style="color:white;">Detay</th>
+                    <th style="color:white;">Sil</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <i class='bx bx-envelope text-info me-3'></i>
+                            <strong>@item.SentMailId</strong>
+                        </td>
+
+                        <td><strong>@item.ReceiverMail</strong></td>
+
+                        <td>
+                            <span class="badge bg-label-primary text-dark" style="text-transform:none;">
+                                @(item.Subject?.Length > 30 ? item.Subject.Substring(0, 30) + "..." : item.Subject)
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-label-primary text-dark" style="text-transform:none; cursor:pointer;" title="@item.Body">
+                                @(item.Body?.Length > 50 ? item.Body.Substring(0, 50) + "..." : item.Body)
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-label-primary text-dark">
+                                <strong>@item.SendDate.ToString("dd MMMM yyyy HH:mm")</strong>
+                            </span>
+                        </td>
+
+                        <td>
+                            <a href="/Admin/MailList/MailDetails/@item.SentMailId"
+                               class="btn btn-primary"
+                               style="cursor:pointer;">
+                                <i class="bx bx-show me-1"></i> Detay
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="/Admin/MailList/DeleteMail/@item.SentMailId"
+                               class="btn btn-danger"
+                               style="cursor:pointer;"
+                               onclick="return confirm('Bu mail kaydını silmek istediğinize emin misiniz?');">
+                                <i class="bx bx-trash me-1"></i> Sil
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

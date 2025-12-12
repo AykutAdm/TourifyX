@@ -1,0 +1,58 @@
+﻿@model EntityLayer.Concrete.Guide
+@{
+    ViewData["Title"] = "AddGuide";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card shadow p-4" style="background-color:#f8f9fa; border-radius:12px;">
+    <h3 class="mb-4 text-dark">Yeni Rehber Ekleme Sayfası</h3>
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-user me-1'></i> Ad Soyad
+                </label>
+                <input type="text" asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" style="color:darkred"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-image-alt me-1'></i> Görsel
+                </label>
+                <input type="text" asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" style="color:darkred"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bxl-instagram me-1'></i> Instagram URL
+                </label>
+                <input type="text" asp-for="InstagramUrl" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bxl-twitter me-1'></i> Twitter URL
+                </label>
+                <input type="text" asp-for="TwitterUrl" class="form-control" />
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-detail me-1'></i> Açıklama
+                </label>
+                <textarea class="form-control" rows="3" asp-for="Description"></textarea>
+                <span asp-validation-for="Description" style="color:darkred"></span>
+            </div>
+
+        </div>
+
+        <button class="btn text-white mt-4 shadow-sm rounded"
+                style="background-color:darkslategrey;">
+            <i class='bx bx-plus-circle me-2'></i>Rehber Ekle
+        </button>
+    </form>
+</div>

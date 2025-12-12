@@ -1,0 +1,51 @@
+@model EntityLayer.Concrete.SentMail
+@{
+    ViewData["Title"] = "Mail Detay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card shadow p-4" style="background-color:#f8f9fa; border-radius:12px;">
+    <h3 class="mb-4 text-dark">Mail Detay Sayfası</h3>
+
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <label class="form-label fw-bold">
+                <i class='bx bx-envelope me-1'></i> Alıcı Mail Adresi
+            </label>
+            <input type="text" value="@Model.ReceiverMail" class="form-control" readonly />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label class="form-label fw-bold">
+                <i class='bx bx-text me-1'></i> Konu
+            </label>
+            <input type="text" value="@Model.Subject" class="form-control" readonly />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label class="form-label fw-bold">
+                <i class='bx bx-calendar me-1'></i> Gönderim Tarihi
+            </label>
+            <input type="text" value="@Model.SendDate.ToString("dd MMMM yyyy HH:mm")" class="form-control" readonly />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label class="form-label fw-bold">
+                <i class='bx bx-detail me-1'></i> Mail İçeriği
+            </label>
+            <textarea class="form-control" rows="10" readonly>@Model.Body</textarea>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+        <a href="/Admin/MailList/Index/" class="btn btn-secondary shadow-sm rounded">
+            <i class='bx bx-arrow-back me-2'></i> Geri Dön
+        </a>
+        <a href="/Admin/Mail/Index/" class="btn text-white shadow-sm rounded"
+           style="background-color:darkslategrey;">
+            <i class='bx bx-envelope me-2'></i> Yeni Mail Gönder
+        </a>
+    </div>
+</div>
+

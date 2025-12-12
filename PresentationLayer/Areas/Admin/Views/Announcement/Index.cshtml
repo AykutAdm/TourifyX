@@ -1,0 +1,80 @@
+﻿@model List<DtoLayer.Dtos.AnnouncementDtos.ListAnnouncementDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Duyurular</h1>
+<br />
+
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover" style="background-color:darkslategrey; color:white;">
+            <thead>
+                <tr>
+                    <th style="color:white;">#</th>
+                    <th style="color:white;">Başlık</th>
+                    <th style="color:white;">İçerik</th>
+                    <th style="color:white;">Sil</th>
+                    <th style="color:white;">Güncelle</th>
+                    <th style="color:white;">Detaylar</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <i class='bx bx-map text-info me-3'></i>
+                            <strong>@item.AnnouncementId</strong>
+                        </td>
+
+                        <td><span class="badge bg-label-primary me-1" style="text-transform:none">@item.Title</span></td>
+
+                        <td>
+                            <span class="badge bg-label-primary me-1"
+                                  style="text-transform:none; cursor:pointer;"
+                                  title="@item.Content">
+                                @(item.Content?.Length > 40
+                                                            ? item.Content.Substring(0, 40) + "..."
+                                                            : item.Content)
+                        </span>
+                    </td>
+
+                        <td>
+                            <a href="/Admin/Announcement/DeleteAnnouncement/@item.AnnouncementId"
+                               class="badge bg-danger text-decoration-none"
+                               style="cursor:pointer;">
+                                <i class='bx bx-trash'></i> Sil
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="/Admin/Announcement/UpdateAnnouncement/@item.AnnouncementId"
+                               class="btn btn-dark"
+                               style="cursor:pointer;">
+                                <i class="bx bx-edit-alt me-1"></i> Güncelle
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="#"
+                               class="btn btn-primary"
+                               style="cursor:pointer;">
+                                <i class="bx bx-edit-alt me-1"></i> Detaylar
+                            </a>
+                        </td>
+
+                    </tr>
+                                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="d-flex justify-content-end mt-4 mb-2">
+    <a href="/Admin/Announcement/AddAnnouncement/"
+       class="btn text-white px-4 py-2 shadow-sm rounded"
+       style="background-color:darkslategrey;">
+        <i class='bx bx-plus-circle me-2'></i> Yeni Duyuru Ekle
+    </a>
+</div>

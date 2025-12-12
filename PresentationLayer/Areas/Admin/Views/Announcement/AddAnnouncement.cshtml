@@ -1,0 +1,39 @@
+﻿@model AddAnnouncementDto
+@{
+    ViewData["Title"] = "AddAnnouncement";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Duyuru Ekleme Sayfası</h1>
+<br />
+
+<div class="card shadow p-4" style="background-color:#f8f9fa; border-radius:12px;">
+    <h3 class="mb-4 text-dark">Yeni Rota Oluştur</h3>
+
+    <form method="post">
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label" style="text-transform:none;">
+                    <i class='bx bx-time-five me-1'></i> Duyuru Başlığı
+                </label>
+                <input type="text" asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger" style="color:darkred"></span>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label class="form-label" style="text-transform:none;">
+                    <i class='bx bx-detail me-1'></i> Duyuru İçeriği
+                </label>
+                <textarea class="form-control" rows="3" asp-for="Content"></textarea>
+                <span asp-validation-for="Content" class="text-danger" style="color:darkred"></span>
+            </div>
+
+        </div>
+
+        <button class="btn text-white mt-4 shadow-sm rounded"
+                style="background-color:darkslategrey;">
+            <i class='bx bx-plus-circle me-2'></i>Duyuruyu Kaydet
+        </button>
+    </form>
+</div>

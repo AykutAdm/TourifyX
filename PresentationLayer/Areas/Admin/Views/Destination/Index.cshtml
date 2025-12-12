@@ -1,0 +1,105 @@
+﻿@using EntityLayer.Concrete
+@model List<Destination>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Tur Rotaları</h1>
+<br />
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover" style="background-color:darkslategrey; color:white;">
+            <thead>
+                <tr>
+                    <th style="color:white;">#</th>
+                    <th style="color:white;">Şehir</th>
+                    <th style="color:white;">Resim</th>
+                    <th style="color:white;">Açıklama</th>
+                    <th style="color:white;">Fiyat</th>
+                    <th style="color:white;">Kapasite</th>
+                    <th style="color:white;">Durum</th>
+                    <th style="color:white;">Sil</th>
+                    <th style="color:white;">Düzenle</th>
+                    <th style="color:white;">Sitede Gör</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <i class='bx bx-map text-info me-3'></i>
+                            <strong>@item.DestinationId</strong>
+                        </td>
+
+                        <td><strong>@item.City</strong></td>
+                        <td>
+                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                <li data-bs-toggle="tooltip"
+                                    data-popup="tooltip-custom"
+                                    data-bs-placement="top"
+                                    class="avatar avatar-md pull-up"
+                                    title="@item.City">
+                                    <img src="@item.ImageUrl" alt="" class="rounded-circle" />
+                                </li>
+                            </ul>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-label-primary me-1"
+                                  style="text-transform:none; cursor:pointer;"
+                                  title="@item.Description">
+                                @(item.Description?.Length > 40
+                                                            ? item.Description.Substring(0, 40) + "..."
+                                                            : item.Description)
+                        </span>
+                    </td>
+
+                        <td><span class="badge bg-label-primary me-1">@item.Price ₺</span></td>
+
+                        <td>
+                            <span class="badge bg-label-primary text-dark"><strong>@item.Capacity</strong></span>
+                        </td>
+
+                        <td><span class="badge bg-info text-dark">@item.Status</span></td>
+
+
+                        <td>
+                            <a href="/Admin/Destination/DeleteDestination/@item.DestinationId"
+                               class="badge bg-danger text-decoration-none"
+                               style="cursor:pointer;">
+                                <i class='bx bx-trash'></i> Sil
+                            </a>
+                        </td>
+
+
+                        <td>
+                            <a href="/Admin/Destination/UpdateDestination/@item.DestinationId"
+                               class="btn btn-primary"
+                               style="cursor:pointer;">
+                                <i class="bx bx-edit-alt me-1"></i> Düzenle
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="/Destination/DestinationDetails/@item.DestinationId"
+                               class="btn btn-warning"
+                               style="cursor:pointer;">
+                                <i class='bx bx-link-external'></i> Sitede Gör
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="d-flex justify-content-end mt-4 mb-2">
+    <a href="/Admin/Destination/AddDestination/"
+       class="btn text-white px-4 py-2 shadow-sm rounded"
+       style="background-color:darkslategrey;">
+        <i class='bx bx-plus-circle me-2'></i> Yeni Rota Ekle
+    </a>
+</div>
+

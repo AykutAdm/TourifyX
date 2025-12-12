@@ -1,0 +1,130 @@
+﻿@model PresentationLayer.Models.MailRequest
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white ">
+                    <h4 class="mb-0 fw-bold" style="color:white">
+                        <i class="fas fa-envelope me-2"></i>Mail Gönder
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" id="mailForm">
+
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label fw-bold mb-2">
+                                    Alıcı Mail Adresi <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="ReceiverMail" class="form-control form-control-lg" placeholder="ornek@email.com" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label fw-bold mb-2">
+                                    Konu <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="Subject" class="form-control form-control-lg" placeholder="Mail konusu" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label fw-bold mb-2">
+                                    İçerik <span class="text-danger">*</span>
+                                </label>
+                                <textarea asp-for="Body" class="form-control" rows="10" placeholder="Mail içeriğinizi buraya yazın..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button type="button" class="btn btn-secondary btn-lg" onclick="clearForm()">
+                                        <i class="fas fa-redo me-2"></i>Temizle
+                                    </button>
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i>Mail Gönder
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Temizle Onay Modali -->
+<div class="modal fade" id="clearConfirmModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow">
+            <div class="modal-header bg-dark text-white">
+                <h2 class="modal-title fw-bold" style="color:white">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Onay Gerekli
+                </h2>
+            </div>
+            <div class="modal-body">
+                Formu temizlemek istediğinize emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                <button class="btn btn-primary" onclick="confirmClear()" data-bs-dismiss="modal">Evet, Temizle</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Uyarı Modali -->
+<div class="modal fade" id="warningModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow">
+            <div class="modal-header bg-dark text-white">
+                <h2 class="modal-title fw-bold" style="color:white">
+                    <i class="fas fa-times-circle me-2"></i>Eksik Bilgi!
+                </h2>
+            </div>
+            <div class="modal-body">
+                <p class="fw-bold mb-0">Lütfen zorunlu alanları doldurun.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal">Tamam</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+        function clearForm() {
+        var modal = new bootstrap.Modal(document.getElementById('clearConfirmModal'));
+        modal.show();
+    }
+
+    function confirmClear() {
+        document.getElementById('mailForm').reset();
+    }
+
+    document.getElementById('mailForm').addEventListener('submit', function (e) {
+        const receiverMail = document.querySelector('#ReceiverMail').value.trim();
+        const subject = document.querySelector('#Subject').value.trim();
+        const body = document.querySelector('#Body').value.trim();
+
+        if (!receiverMail || !subject || !body) {
+            e.preventDefault();
+            var modal = new bootstrap.Modal(document.getElementById('warningModal'));
+            modal.show();
+        }
+    });
+
+</script>
+

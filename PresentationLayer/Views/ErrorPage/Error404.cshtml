@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Sayfa Bulunamadı | TourifyX</title>
+    <link rel="stylesheet" href="~/404-Sayfası/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="error-content">
+            <div class="error-number">
+                <span class="number">4</span>
+                <span class="compass">🧭</span>
+                <span class="number">4</span>
+            </div>
+            <h1 class="error-title">Yolculukta Kaybolduk!</h1>
+            <p class="error-description">
+                Bu rota turlarımız arasında görünmüyor ✈️
+                Aradığın sayfa taşınmış ya da hiç var olmamış olabilir.
+                Haydi seni güvenli bölgeye geri götürelim :)
+            </p>
+            <div class="error-actions">
+                <a href="/Default/Index/" class="btn btn-primary">Ana Sayfaya Dön</a>
+                <a href="javascript:history.back()" class="btn btn-secondary">Geri Git</a>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Aradığınızı buraya yazın...">
+                <button id="searchBtn" class="search-btn">Ara</button>
+            </div>
+        </div>
+        <div class="floating-elements">
+            <div class="floating-icon">✈️</div>
+            <div class="floating-icon">🌍</div>
+            <div class="floating-icon">🗺️</div>
+            <div class="floating-icon">🎒</div>
+            <div class="floating-icon">📷</div>
+        </div>
+    </div>
+    <script src="~/404-Sayfası/js/script.js"></script>
+</body>
+</html>

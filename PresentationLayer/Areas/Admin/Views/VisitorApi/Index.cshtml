@@ -1,0 +1,78 @@
+﻿@model List<VisitorViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Api Ziyaretçi Listesi</h1>
+<br />
+
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover" style="background-color:darkslategrey; color:white;">
+            <thead>
+                <tr>
+                    <th style="color:white;">#</th>
+                    <th style="color:white;">Ad</th>
+                    <th style="color:white;">Soyad</th>
+                    <th style="color:white;">Şehir</th>
+                    <th style="color:white;">Ülke</th>
+                    <th style="color:white;">Mail</th>
+                    <th style="color:white;">Sil</th>
+                    <th style="color:white;">Güncelle</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <i class='bx bx-map text-info me-3'></i>
+                            <strong>@item.VisitorId</strong>
+                        </td>
+
+                        <td><strong>@item.Name</strong></td>
+
+                        <td><span class="badge bg-label-primary text-dark" style="text-transform:none">@item.Surname</span></td>
+
+                        <td>
+                            <span class="badge bg-label-primary text-dark" style="text-transform:none"><strong>@item.City</strong></span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-label-primary text-dark" style="text-transform:none"><strong>@item.Country</strong></span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-label-primary text-dark" style="text-transform:none"><strong>@item.Mail</strong></span>
+                        </td>
+
+                        <td>
+                            <a href="/Admin/VisitorApi/DeleteVisitor/@item.VisitorId"
+                               class="badge bg-danger text-decoration-none"
+                               style="cursor:pointer;">
+                                <i class='bx bx-trash'></i> Sil
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="/Admin/VisitorApi/UpdateVisitor/@item.VisitorId"
+                               class="btn btn-primary"
+                               style="cursor:pointer;">
+                                <i class="bx bx-edit-alt me-1"></i> Güncelle
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="d-flex justify-content-end mt-4 mb-2">
+    <a href="/Admin/VisitorApi/AddVisitor/"
+       class="btn text-white px-4 py-2 shadow-sm rounded"
+       style="background-color:darkslategrey;">
+        <i class='bx bx-plus-circle me-2'></i> Yeni Ziyaretçi Ekle
+    </a>
+</div>

@@ -1,0 +1,71 @@
+@model EntityLayer.Concrete.AppUser
+@{
+    ViewData["Title"] = "UpdateUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card shadow p-4" style="background-color:#f8f9fa; border-radius:12px;">
+    <h3 class="mb-4 text-dark">Kullanıcı Güncelleme Sayfası</h3>
+
+    <form method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-user me-1'></i> Ad
+                </label>
+                <input type="text" asp-for="Name" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-user-circle me-1'></i> Soyad
+                </label>
+                <input type="text" asp-for="Surname" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-user-pin me-1'></i> Kullanıcı Adı
+                </label>
+                <input type="text" asp-for="UserName" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-envelope me-1'></i> Mail
+                </label>
+                <input type="email" asp-for="Email" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-phone me-1'></i> Telefon
+                </label>
+                <input type="text" asp-for="PhoneNumber" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-image-alt me-1'></i> Profil Görseli
+                </label>
+                <input type="text" asp-for="ImageUrl" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-male-female me-1'></i> Cinsiyet
+                </label>
+                <input type="text" asp-for="Gender" class="form-control" />
+            </div>
+
+        </div>
+
+        <button class="btn text-white mt-4 shadow-sm rounded"
+                style="background-color:darkslategrey;">
+            <i class='bx bx-plus-circle me-2'></i>Kullanıcıyı Güncelle
+        </button>
+    </form>
+</div>
+

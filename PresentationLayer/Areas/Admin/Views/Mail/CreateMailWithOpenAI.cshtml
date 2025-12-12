@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "CreateMailWithOpenAI";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card shadow p-4" style="background-color:#f8f9fa; border-radius:12px;">
+    <h3 class="mb-4 text-dark">OpenAI ile Mail Otomatik Yanıt Önerisi</h3>
+
+    <form method="post">
+        <div class="row">
+
+            <div class="col-md-12 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-detail me-1'></i> Mail İçeriği
+                </label>
+                <textarea class="form-control" rows="3" name="prompt"></textarea>
+            </div>
+
+        </div>
+
+        <button class="btn text-white mt-4 shadow-sm rounded"
+                style="background-color:darkslategrey;">
+            <i class='bx bx-plus-circle me-2'></i>Otomatik Yanıt Oluştur
+        </button>
+    </form>
+    <br /><br />
+    @if (ViewBag.mail != null)
+    {
+        <hr />
+        <h5>Oluşturulan AI Mail Yanıt Önerisi</h5>
+        @Html.Raw(ViewBag.mail.ToString())
+    }
+</div>
+
+

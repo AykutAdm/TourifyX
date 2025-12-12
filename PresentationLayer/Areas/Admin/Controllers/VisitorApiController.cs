@@ -1,0 +1,102 @@
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using PresentationLayer.Areas.Admin.Models;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PresentationLayer.Areas.Admin.Controllers
+{
+    [AllowAnonymous]
+    [Area("Admin")]
+    public class VisitorApiController : Controller
+    {
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public VisitorApiController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
+
+        //Listeleme işlemi
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("http://localhost:38955/api/Visitor");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<VisitorViewModel>>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+
+        //Ekleme işlemi
+
+        [HttpGet]
+        public IActionResult AddVisitor()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddVisitor(VisitorViewModel visitorViewModel)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(visitorViewModel);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PostAsync("http://localhost:38955/api/Visitor", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        //Silme işlemi
+        public async Task<IActionResult> DeleteVisitor(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"http://localhost:38955/api/Visitor/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        //Güncelleme işlemi
+        [HttpGet]
+        public async Task<IActionResult> UpdateVisitor(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"http://localhost:38955/api/Visitor/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<VisitorViewModel>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateVisitor(VisitorViewModel visitorViewModel)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(visitorViewModel);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync("http://localhost:38955/api/Visitor", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+    }
+}

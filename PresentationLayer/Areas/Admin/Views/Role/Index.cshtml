@@ -1,0 +1,96 @@
+﻿@model List<AppRole>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+
+<h1>Rol Listesi</h1>
+<br />
+@if (Model.Count > 0)
+{
+    <div class="card">
+        <div class="table-responsive text-nowrap">
+
+            <table class="table table-hover" style="background-color:darkslategrey; color:white;">
+                <thead>
+                    <tr>
+                        <th style="color:white;">#</th>
+                        <th style="color:white;">Rol Adı</th>
+                        <th style="color:white;">Rolü Sil</th>
+                        <th style="color:white;">Rolü Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td>
+                                <i class='bx bx-map text-info me-3'></i>
+                                <strong>@count</strong>
+                            </td>
+
+                            <td><strong>@item.Name</strong></td>
+
+                            <td>
+                                <a href="/Admin/Role/DeleteRole/@item.Id"
+                                   class="badge bg-danger text-decoration-none"
+                                   style="cursor:pointer;">
+                                    <i class='bx bx-trash'></i> Sil
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="/Admin/Role/UpdateRole/@item.Id"
+                                   class="btn btn-primary"
+                                   style="cursor:pointer;">
+                                    <i class="bx bx-edit-alt me-1"></i> Güncelle
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="p-4 text-center"
+         style="background-color:darkslategrey; border-radius:16px; border:1px solid #ececec;
+                   box-shadow:0 6px 18px rgba(0,0,0,0.12); font-size:17px; font-weight:600;">
+
+        <div style="display:inline-block; padding:12px 18px; border-radius:50%;
+                   background:#ffebee; color:#c62828; font-size:22px; margin-bottom:10px;">
+            ⚠️
+        </div>
+
+        <div style="color:white;">Sistemde şu anda bir rol bulunmuyor.</div>
+        <div style="color:white; font-size:14px; margin-top:4px;">Yeni bir rol eklemek için aşağıdaki butonu kullanabilirsin.</div>
+    </div>
+}
+
+
+<div class="d-flex justify-content-end gap-3 mt-4 mb-2">
+
+    <a href="/Admin/Role/UserList/"
+       class="btn btn-dark px-4 py-2"
+       style="cursor:pointer;">
+        <i class="bx bx-key me-1"></i> Kullanıcı Listesi
+    </a>
+
+    <a href="/Admin/Role/CreateRole/"
+       class="btn text-white px-4 py-2 shadow-sm rounded"
+       style="background-color:darkslategrey;">
+        <i class='bx bx-plus-circle me-2'></i> Yeni Rol Ekle
+    </a>
+</div>
+
+
+
+
+
+

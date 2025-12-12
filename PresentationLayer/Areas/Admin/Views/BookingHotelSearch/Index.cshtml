@@ -1,0 +1,90 @@
+﻿@model IEnumerable<BookingHotelSearchViewModel.Result>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+    string scoreWord = "";
+}
+
+<h1>Booking Otel Rezervasyon Sayfası</h1>
+<h3>Arama Yapılan Şehir: Paris/Fransa</h3>
+<br />
+
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover" style="background-color:darkslategrey; color:white;">
+            <thead>
+                <tr>
+                    <th style="color:white;">#</th>
+                    <th style="color:white;">Otel Adı</th>
+                    <th style="color:white;">Otel Resmi</th>
+                    <th style="color:white;">Otel Puanı</th>
+                    <th style="color:white;">Otel Değerlendirmesi</th>
+                    <th style="color:white;">Detaylar</th>
+
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>
+                            <i class='bx bx-map text-info me-3'></i>
+                            <strong>@count</strong>
+                        </td>
+
+                        <td><strong>@item.name</strong></td>
+
+                        <td>
+                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                <li data-bs-toggle="tooltip"
+                                    data-popup="tooltip-custom"
+                                    data-bs-placement="top"
+                                    class="avatar avatar-md pull-up"
+                                    title="@item.name">
+                                    <img src="@item.photoMainUrl" alt="" class="rounded-circle" />
+                                </li>
+                            </ul>
+                        </td>
+
+                        <td><span class="badge bg-label-primary me-1">@item.reviewScore</span></td>
+
+                        <td>
+                            @if (item.reviewScoreWord == "Very good")
+                            {
+                                <strong>Çok İyi</strong>
+                            }
+                            @if (item.reviewScoreWord == "Superb")
+                            {
+                                <strong>Mükemmel</strong>
+                            }
+                            @if (item.reviewScoreWord == "Good")
+                            {
+                                <strong>İyi</strong>
+                            }
+                            @if (item.reviewScoreWord == "Fabulous")
+                            {
+                                <strong>Olağanüstü</strong>
+                            }
+                            @if (item.reviewScoreWord == "Pleasant")
+                            {
+                                <strong>Hoş</strong>
+                            }
+                        </td>
+
+
+                        <td>
+                            <a href="#"
+                               class="btn btn-primary"
+                               style="cursor:pointer;">
+                                <i class="bx bx-edit-alt me-1"></i> Detaylar
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

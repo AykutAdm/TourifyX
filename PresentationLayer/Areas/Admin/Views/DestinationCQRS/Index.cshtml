@@ -1,0 +1,73 @@
+﻿@model List<GetAllDestinationQueryResult>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>CQRS Tur Rotası Verileri</h1>
+<br />
+
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover" style="background-color:darkslategrey; color:white;">
+            <thead>
+                <tr>
+                    <th style="color:white;">#</th>
+                    <th style="color:white;">Şehir</th>
+                    <th style="color:white;">Gün-Gece</th>
+                    <th style="color:white;">Fiyat</th>
+                    <th style="color:white;">Kapasite</th>
+                    <th style="color:white;">Sil</th>
+                    <th style="color:white;">Güncelle</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <i class='bx bx-map text-info me-3'></i>
+                            <strong>@item.DestinationId</strong>
+                        </td>
+
+                        <td><strong>@item.City</strong></td>
+
+                        <td><strong>@item.DayNight</strong></td>
+
+                        <td><span class="badge bg-label-primary me-1">@item.Price ₺</span></td>
+
+                        <td>
+                            <span class="badge bg-label-primary text-dark"><strong>@item.Capacity</strong></span>
+                        </td>
+
+                        <td>
+                            <a href="/Admin/DestinationCQRS/DeleteDestination/@item.DestinationId"
+                               class="badge bg-danger text-decoration-none"
+                               style="cursor:pointer;">
+                                <i class='bx bx-trash'></i> Sil
+                            </a>
+                        </td>
+
+
+                        <td>
+                            <a href="/Admin/DestinationCQRS/GetDestination/@item.DestinationId"
+                               class="btn btn-primary"
+                               style="cursor:pointer;">
+                                <i class="bx bx-edit-alt me-1"></i> Güncelle
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="d-flex justify-content-end mt-4 mb-2">
+    <a href="/Admin/DestinationCQRS/AddDestination/"
+       class="btn text-white px-4 py-2 shadow-sm rounded"
+       style="background-color:darkslategrey;">
+        <i class='bx bx-plus-circle me-2'></i> Yeni Rota Ekle
+    </a>
+</div>
+

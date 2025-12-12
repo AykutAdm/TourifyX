@@ -1,0 +1,109 @@
+@model EntityLayer.Concrete.About
+
+@{
+    ViewData["Title"] = "Hakkımızda";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<!-- about breadcrumb -->
+<section class="w3l-about-breadcrumb text-left">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
+        <div class="container">
+            <h2 class="title">Hakkımızda</h2>
+            <ul class="breadcrumbs-custom-path mt-2">
+                <li><a href="/Default/Index/">Ana Sayfa</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Hakkımızda </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- //about breadcrumb -->
+
+@if (Model != null)
+{
+    <!-- /about-6-->
+    <section class="w3l-cta4 py-5">
+        <div class="container py-lg-5">
+            <div class="ab-section text-center">
+                <h6 class="sub-title">Hakkımızda</h6>
+                <h3 class="hny-title">@Model.Title</h3>
+                <p class="py-3 mb-3">@Model.Description</p>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.AboutImageUrl))
+            {
+                <div class="row mt-5">
+                    <div class="col-md-9 mx-auto">
+                        <img src="@Model.AboutImageUrl" class="img-fluid" alt="@Model.Title" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+    <!-- //about-6-->
+
+    @if (!string.IsNullOrEmpty(Model.Title2) || !string.IsNullOrEmpty(Model.Description2))
+    {
+        <!-- /content-6-->
+        <section class="w3l-content-6 py-5">
+            <div class="container py-lg-5">
+                <div class="row">
+                    <div class="col-lg-6 content-6-left pr-lg-5">
+                        @if (!string.IsNullOrEmpty(Model.Title2))
+                        {
+                            <h6 class="sub-title">Neden Bizi Seçmelisiniz</h6>
+                            <h3 class="hny-title">@Model.Title2</h3>
+                        }
+                    </div>
+                    <div class="col-lg-6 content-6-right mt-lg-0 mt-4">
+                        @if (!string.IsNullOrEmpty(Model.Description2))
+                        {
+                            <p class="mb-3">@Model.Description2</p>
+                        }
+                        <a href="/Destination/Index/" class="btn btn-style btn-primary mt-4">Rotalarımızı Keşfet</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- //content-6-->
+    }
+}
+else
+{
+    <!-- /about-6-->
+    <section class="w3l-cta4 py-5">
+        <div class="container py-lg-5">
+            <div class="ab-section text-center">
+                <h6 class="sub-title">Hakkımızda</h6>
+                <h3 class="hny-title">TourifyX Hakkında</h3>
+                <p class="py-3 mb-3">Henüz hakkımızda bilgisi eklenmemiştir.</p>
+            </div>
+        </div>
+    </section>
+    <!-- //about-6-->
+}
+
+<!-- stats -->
+<section class="w3l-stats py-5" id="stats">
+    <div class="gallery-inner container py-lg-0 py-3">
+        <div class="row stats-con">
+            <div class="col-lg-3 col-6 stats_info counter_grid">
+                <p class="counter">@ViewBag.destination</p>
+                <h4>Rotalar</h4>
+            </div>
+            <div class="col-lg-3 col-6 stats_info counter_grid">
+                <p class="counter">@ViewBag.guide</p>
+                <h4>Rehberler</h4>
+            </div>
+            <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-5">
+                <p class="counter">@ViewBag.customer</p>
+                <h4>Mutlu Müşteriler</h4>
+            </div>
+            <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-5">
+                <p class="counter">@ViewBag.experience</p>
+                <h4>Yıllık Deneyim</h4>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //stats -->
+

@@ -1,0 +1,39 @@
+@model EntityLayer.Concrete.SubAbout
+@{
+    ViewData["Title"] = "Alt Hakkında Güncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card shadow p-4" style="background-color:#f8f9fa; border-radius:12px;">
+    <h3 class="mb-4 text-dark">Alt Hakkında Güncelleme Sayfası</h3>
+
+    <form method="post">
+        <input type="hidden" asp-for="SubAboutId" />
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-text me-1'></i> Başlık
+                </label>
+                <input type="text" asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" style="color:darkred"></span>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-detail me-1'></i> Açıklama
+                </label>
+                <textarea class="form-control" rows="5" asp-for="Description"></textarea>
+                <span asp-validation-for="Description" style="color:darkred"></span>
+            </div>
+
+        </div>
+
+        <button class="btn text-white mt-4 shadow-sm rounded"
+                style="background-color:darkslategrey;">
+            <i class='bx bx-save me-2'></i>Alt Hakkında Güncelle
+        </button>
+
+    </form>
+</div>
+

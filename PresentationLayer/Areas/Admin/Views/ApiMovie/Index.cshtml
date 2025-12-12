@@ -1,0 +1,76 @@
+﻿@model List<ApiMovieViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Api IMDB Top 100 Film Listesi</h1>
+<br />
+
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover" style="background-color:darkslategrey; color:white;">
+            <thead>
+                <tr>
+                    <th style="color:white;">#</th>
+                    <th style="color:white;">Film Adı</th>
+                    <th style="color:white;">Resim</th>
+                    <th style="color:white;">Açıklama</th>
+                    <th style="color:white;">Imdb Puanı</th>
+                    <th style="color:white;">Yapım Yılı</th>
+                    <th style="color:white;">Fragman</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <i class='bx bx-map text-info me-3'></i>
+                            <strong>@item.rank</strong>
+                        </td>
+
+                        <td><strong>@item.title</strong></td>
+                        <td>
+                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                <li data-bs-toggle="tooltip"
+                                    data-popup="tooltip-custom"
+                                    data-bs-placement="top"
+                                    class="avatar avatar-md pull-up"
+                                    title="@item.title">
+                                    <img src="@item.image" alt="" class="rounded-circle" />
+                                </li>
+                            </ul>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-label-primary me-1"
+                                  style="text-transform:none; cursor:pointer;"
+                                  title="@item.description">
+                                @(item.description?.Length > 30
+                                                            ? item.description.Substring(0, 30) + "..."
+                                                            : item.description)
+                        </span>
+                    </td>
+
+                        <td><span class="badge bg-label-primary me-1">@item.rating</span></td>
+
+                        <td>
+                            <span class="badge bg-label-primary text-dark"><strong>@item.year</strong></span>
+                        </td>
+
+
+                        <td>
+                            <a href="@item.imdb_link"
+                               class="btn btn-primary"
+                               style="cursor:pointer;">
+                                <i class="bx bx-edit-alt me-1"></i> Fragman
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

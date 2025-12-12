@@ -1,0 +1,63 @@
+﻿@using EntityLayer.Concrete
+@model List<Reservation>
+@{
+    ViewData["Title"] = "ReservationUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Kullanıcının Geçmiş Rezervasyonları</h1>
+<br />
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover" style="background-color:darkslategrey; color:white;">
+            <thead>
+                <tr>
+                    <th style="color:white;">#</th>
+                    <th style="color:white;">Misafir Ad Soyad</th>
+                    <th style="color:white;">Rota</th>
+                    <th style="color:white;">Kişi Sayısı</th>
+                    <th style="color:white;">Tarih</th>
+                    <th style="color:white;">Detaylar</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <i class='bx bx-map text-info me-3'></i>
+                            <strong>@item.ReservationId</strong>
+                        </td>
+
+                        <td><strong>@item.AppUserId</strong></td>
+                        <td>
+                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                <li data-bs-toggle="tooltip"
+                                    data-popup="tooltip-custom"
+                                    data-bs-placement="top"
+                                    class="avatar avatar-md pull-up"
+                                    title="@item.Destination.City">
+                                    <img src="@item.Destination.ImageUrl" alt="" class="rounded-circle" />
+                                    <span><strong>@item.Destination.City</strong></span>
+                                </li>
+                            </ul>
+                        </td>
+
+                        <td><span class="badge bg-label-primary me-1" style="text-transform:none;">@item.PersonCount</span></td>
+
+                        <td><span class="badge bg-label-primary me-1" style="text-transform:none;">@item.ReservationDate.ToString("dd MMMM yyyy")</span></td>
+
+                        <td>
+                            <a href="#"
+                               class="btn btn-outline-light"
+                               style="cursor:pointer;">
+                                <i class='bx bx-link-external'></i> Detaylar
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

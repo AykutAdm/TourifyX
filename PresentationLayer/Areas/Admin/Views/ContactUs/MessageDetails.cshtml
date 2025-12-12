@@ -1,0 +1,35 @@
+﻿@model ContactUs
+@{
+    ViewData["Title"] = "MessageDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card shadow p-4" style="background-color:#f8f9fa; border-radius:12px;">
+    <h3 class="mb-4 text-dark">Mesaj Detay Sayfası</h3>
+
+    <form method="post">
+        <input type="hidden" asp-for="ContactUsId" />
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-user me-1'></i> Konu
+                </label>
+                <input type="text" asp-for="Subject" class="form-control" />
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label class="form-label">
+                    <i class='bx bx-detail me-1'></i> Mesaj
+                </label>
+                <textarea class="form-control" rows="3" asp-for="MessageBody"></textarea>
+            </div>
+        </div>
+    </form>
+    <div class="d-flex justify-content-end">
+        <a href="/Admin/Mail/CreateMailWithOpenAI/" class="btn text-white mt-4 shadow-sm rounded px-3 py-2"
+           style="background-color:darkslategrey; white-space: nowrap;">
+            <i class='bx bx-plus-circle me-1'></i> Open AI ile Otomatik Yanıt Oluştur
+        </a>
+    </div>
+</div>
